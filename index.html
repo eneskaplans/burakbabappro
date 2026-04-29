@@ -315,6 +315,61 @@ const { useState, useEffect, useRef, useMemo, useCallback } = React;
 
 const fmt = (n) => Math.round(Number(n) || 0).toLocaleString();
 const STREETS = ['preflop','flop','turn','river'];
+
+// ─── v2.1: persistence ───────────────────────────────────────────────────
+const STORAGE_KEY = 'pokerTrackerV21';
+const loadSaved = () => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const s = JSON.parse(raw);
+    if (!s || s.phase === 'setup' || s.phase === 'gameover') return null;
+    return s;
+  } catch { return null; }
+};
+const saveState = (s) => {
+  try {
+    if (!s || s.phase === 'setup') { localStorage.removeItem(STORAGE_KEY); return; }
+    const { modal, ...rest } = s;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(rest));
+  } catch {}
+};
+const clearSaved = () => { try { localStorage.removeItem(STORAGE_KEY); } catch {} };
+
+// ─── v2.1: Web-Audio sound engine ────────────────────────────────────────
+let audioCtx = null;
+const ensureAudio = () => {
+  if (!audioCtx) {
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch {}
+  }
+  if (audioCtx?.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+};
+const beep = (freq, dur, type='sine', vol=0.15, attack=0.005, decay=null) => {
+  const ctx = ensureAudio(); if (!ctx) return;
+  const o = ctx.createOscillator(); const g = ctx.createGain();
+  o.type = type; o.frequency.value = freq;
+  g.gain.setValueAtTime(0, ctx.currentTime);
+  g.gain.linearRampToValueAtTime(vol, ctx.currentTime + attack);
+  g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + (decay || dur));
+  o.connect(g).connect(ctx.destination);
+  o.start(); o.stop(ctx.currentTime + dur + 0.05);
+};
+const sfx = {
+  chip: () => { beep(880, 0.08, 'square', 0.08); setTimeout(() => beep(1320, 0.06, 'square', 0.06), 40); },
+  check: () => beep(440, 0.1, 'sine', 0.1),
+  fold: () => beep(180, 0.15, 'sawtooth', 0.08),
+  card: () => beep(2200, 0.04, 'sine', 0.05, 0.001, 0.04),
+  win: () => {
+    [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => beep(f, 0.18, 'triangle', 0.12), i * 90));
+  },
+  click: () => beep(600, 0.03, 'sine', 0.05, 0.001, 0.03),
+};
+let soundOn = true;
+try { soundOn = localStorage.getItem('pokerSoundOn') !== '0'; } catch {}
+const playSfx = (name) => { if (soundOn && sfx[name]) sfx[name](); };
+const setSoundOn = (v) => { soundOn = v; try { localStorage.setItem('pokerSoundOn', v ? '1' : '0'); } catch {} };
+
 const STREET_LABELS = { preflop:'Preflop', flop:'Flop', turn:'Turn', river:'River', showdown:'Showdown', handover:'Hand Over' };
 const STREET_CARDS = { preflop:0, flop:3, turn:4, river:5, showdown:5, handover:5 };
 const PG = [
@@ -381,7 +436,8 @@ function startHand(state, isFirst) {
     currentBet: 0, totalCommittedHand: 0,
     hasFolded: false, isAllIn: false,
     hasActedThisRound: false, lastAction: null,
-    sittingOut: p.balance <= 0,
+    sittingOut: p.balance <= 0 || p.requestSitOut === true,
+    requestSitOut: false,
   }));
   const dealtIn = players.filter(p => !p.sittingOut);
   if (dealtIn.length < 2) return { ...state, players, phase: 'gameover' };
@@ -422,6 +478,13 @@ function startHand(state, isFirst) {
   };
 
   const firstToAct = dealtIn.length === 2 ? sbIdx : nextActive(players, bbIdx);
+  const newHandNum = state.handsPlayed + 1;
+  const newLog = [...(state.actionLog || []), {
+    type: 'hand_start', hand: newHandNum, dealer: players[dealerIdx].name,
+    sb: { name: players[sbIdx].name, amount: sbAmt },
+    bb: { name: players[bbIdx].name, amount: bbAmt },
+    blindLevel: state.blindLevelIdx + 1,
+  }];
 
   return {
     ...state, players,
@@ -429,9 +492,10 @@ function startHand(state, isFirst) {
     pot: 0, currentBet: bbAmt, minRaiseAmount: lvl.big,
     lastRaiserIdx: bbIdx,
     street: 'preflop', phase: 'game',
-    handsPlayed: state.handsPlayed + 1,
+    handsPlayed: newHandNum,
     showdownData: null, handoverData: null,
     streetAnimKey: (state.streetAnimKey || 0) + 1,
+    actionLog: newLog,
   };
 }
 function endHandSinglePlayer(state) {
