@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -27,287 +26,286 @@
   input, textarea, [contenteditable] { -webkit-user-select: text; user-select: text; touch-action: auto; }
   #root { height: 100dvh; width: 100vw; overflow: hidden; }
 
-/* ───── felt and rim ───── */
-.felt {
-background:
-radial-gradient(ellipse 70% 60% at 50% 35%, rgba(34,197,94,0.25) 0%, transparent 70%),
-radial-gradient(ellipse at center, #166534 0%, #14532d 60%, #052e16 100%);
-box-shadow:
-inset 0 0 80px rgba(0,0,0,0.7),
-inset 0 0 0 4px rgba(28,46,34,0.9),
-0 18px 50px rgba(0,0,0,0.55);
-}
-.felt-rim {
-background: linear-gradient(180deg, #4a3320 0%, #2a1a0c 100%);
-box-shadow:
-inset 0 1px 0 rgba(255,200,140,0.2),
-inset 0 -2px 4px rgba(0,0,0,0.5),
-0 8px 24px rgba(0,0,0,0.5);
-}
+  /* ───── felt and rim ───── */
+  .felt {
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 35%, rgba(34,197,94,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse at center, #166534 0%, #14532d 60%, #052e16 100%);
+    box-shadow:
+      inset 0 0 80px rgba(0,0,0,0.7),
+      inset 0 0 0 4px rgba(28,46,34,0.9),
+      0 18px 50px rgba(0,0,0,0.55);
+  }
+  .felt-rim {
+    background: linear-gradient(180deg, #4a3320 0%, #2a1a0c 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,200,140,0.2),
+      inset 0 -2px 4px rgba(0,0,0,0.5),
+      0 8px 24px rgba(0,0,0,0.5);
+  }
 
-/* ───── glassmorphism panels ───── */
-.glass {
-background: linear-gradient(180deg, rgba(39,39,42,0.7) 0%, rgba(24,24,27,0.7) 100%);
-backdrop-filter: blur(16px);
--webkit-backdrop-filter: blur(16px);
-border: 1px solid rgba(255,255,255,0.06);
-box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
-}
-.glass-strong {
-background: linear-gradient(180deg, rgba(39,39,42,0.92) 0%, rgba(15,15,18,0.95) 100%);
-backdrop-filter: blur(24px);
--webkit-backdrop-filter: blur(24px);
-border: 1px solid rgba(255,255,255,0.08);
-box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
-}
+  /* ───── glassmorphism panels ───── */
+  .glass {
+    background: linear-gradient(180deg, rgba(39,39,42,0.7) 0%, rgba(24,24,27,0.7) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .glass-strong {
+    background: linear-gradient(180deg, rgba(39,39,42,0.92) 0%, rgba(15,15,18,0.95) 100%);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
 
-/* ───── Poker chip buttons ───── */
-.chip-btn {
-position: relative;
-border-radius: 9999px;
-box-shadow:
-0 6px 0 rgba(0,0,0,0.45),
-0 10px 24px rgba(0,0,0,0.5),
-inset 0 2px 0 rgba(255,255,255,0.22),
-inset 0 -3px 0 rgba(0,0,0,0.28);
-transition: transform 0.08s ease, box-shadow 0.08s ease;
-}
-.chip-btn:active {
-transform: translateY(3px);
-box-shadow:
-0 3px 0 rgba(0,0,0,0.45),
-0 6px 12px rgba(0,0,0,0.4),
-inset 0 2px 0 rgba(255,255,255,0.22),
-inset 0 -3px 0 rgba(0,0,0,0.28);
-}
-.chip-btn[disabled] { opacity: 0.4; }
-.chip-btn::before {
-content: ‘’;
-position: absolute;
-inset: 6px;
-border-radius: 9999px;
-border: 3px dashed rgba(255,255,255,0.55);
-}
-.chip-btn::after {
-content: ‘’;
-position: absolute;
-inset: 14px;
-border-radius: 9999px;
-background: rgba(0,0,0,0.18);
-box-shadow: inset 0 1px 2px rgba(0,0,0,0.4);
-}
-.chip-btn > * { position: relative; z-index: 2; }
-.chip-call  { background: radial-gradient(circle at 30% 25%, #fcd34d 0%, #d97706 65%, #92400e 100%); }
-.chip-raise { background: radial-gradient(circle at 30% 25%, #fb7185 0%, #dc2626 65%, #7f1d1d 100%); }
-.chip-fold  { background: radial-gradient(circle at 30% 25%, #71717a 0%, #27272a 65%, #09090b 100%); }
-.chip-check { background: radial-gradient(circle at 30% 25%, #93c5fd 0%, #2563eb 65%, #1e3a8a 100%); }
+  /* ───── Poker chip buttons ───── */
+  .chip-btn {
+    position: relative;
+    border-radius: 9999px;
+    box-shadow:
+      0 6px 0 rgba(0,0,0,0.45),
+      0 10px 24px rgba(0,0,0,0.5),
+      inset 0 2px 0 rgba(255,255,255,0.22),
+      inset 0 -3px 0 rgba(0,0,0,0.28);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+  .chip-btn:active {
+    transform: translateY(3px);
+    box-shadow:
+      0 3px 0 rgba(0,0,0,0.45),
+      0 6px 12px rgba(0,0,0,0.4),
+      inset 0 2px 0 rgba(255,255,255,0.22),
+      inset 0 -3px 0 rgba(0,0,0,0.28);
+  }
+  .chip-btn[disabled] { opacity: 0.4; }
+  .chip-btn::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 9999px;
+    border: 3px dashed rgba(255,255,255,0.55);
+  }
+  .chip-btn::after {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border-radius: 9999px;
+    background: rgba(0,0,0,0.18);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.4);
+  }
+  .chip-btn > * { position: relative; z-index: 2; }
+  .chip-call  { background: radial-gradient(circle at 30% 25%, #fcd34d 0%, #d97706 65%, #92400e 100%); }
+  .chip-raise { background: radial-gradient(circle at 30% 25%, #fb7185 0%, #dc2626 65%, #7f1d1d 100%); }
+  .chip-fold  { background: radial-gradient(circle at 30% 25%, #71717a 0%, #27272a 65%, #09090b 100%); }
+  .chip-check { background: radial-gradient(circle at 30% 25%, #93c5fd 0%, #2563eb 65%, #1e3a8a 100%); }
 
-/* ───── Bet chip in front of player ───── */
-.bet-chip {
-background: radial-gradient(circle at 30% 25%, #fde68a 0%, #f59e0b 65%, #92400e 100%);
-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -1px 0 rgba(0,0,0,0.3);
-border: 2px dashed rgba(255,255,255,0.6);
-}
-.dealer-btn {
-background: radial-gradient(circle at 30% 25%, #ffffff 0%, #d4d4d8 100%);
-color: #18181b;
-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.5);
-}
+  /* ───── Bet chip in front of player ───── */
+  .bet-chip {
+    background: radial-gradient(circle at 30% 25%, #fde68a 0%, #f59e0b 65%, #92400e 100%);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -1px 0 rgba(0,0,0,0.3);
+    border: 2px dashed rgba(255,255,255,0.6);
+  }
+  .dealer-btn {
+    background: radial-gradient(circle at 30% 25%, #ffffff 0%, #d4d4d8 100%);
+    color: #18181b;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.5);
+  }
 
-/* ───── Card backs ───── */
-.card-back {
-background: white;
-border: 1.5px solid #d4d4d8;
-border-radius: 4px;
-box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-position: relative;
-overflow: hidden;
-}
-.card-back::before {
-content: ‘’;
-position: absolute;
-inset: 2px;
-border-radius: 2px;
-background: repeating-linear-gradient(45deg, #ef4444 0 3px, #991b1b 3px 6px);
-}
-.card-flip-in { animation: flipIn 0.5s cubic-bezier(.34,1.56,.64,1) backwards; }
-@keyframes flipIn {
-from { transform: rotateY(180deg) translateY(-12px); opacity: 0; }
-to   { transform: rotateY(0deg) translateY(0); opacity: 1; }
-}
+  /* ───── Card backs ───── */
+  .card-back {
+    background: white;
+    border: 1.5px solid #d4d4d8;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-back::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 2px;
+    background: repeating-linear-gradient(45deg, #ef4444 0 3px, #991b1b 3px 6px);
+  }
+  .card-flip-in { animation: flipIn 0.5s cubic-bezier(.34,1.56,.64,1) backwards; }
+  @keyframes flipIn {
+    from { transform: rotateY(180deg) translateY(-12px); opacity: 0; }
+    to   { transform: rotateY(0deg) translateY(0); opacity: 1; }
+  }
 
-/* ───── Active turn indicator ───── */
-@keyframes pulseGlow {
-0%, 100% {
-box-shadow:
-0 0 0 3px #fbbf24,
-0 0 14px 4px rgba(251,191,36,0.85),
-0 0 32px 6px rgba(251,191,36,0.45);
-}
-50% {
-box-shadow:
-0 0 0 3px #fde047,
-0 0 22px 8px rgba(253,224,71,0.95),
-0 0 50px 14px rgba(253,224,71,0.55);
-}
-}
-.active-turn { animation: pulseGlow 1.4s ease-in-out infinite; }
-@keyframes spotlight {
-0%, 100% { opacity: 0.55; }
-50%      { opacity: 0.95; }
-}
-.spotlight {
-position: absolute;
-width: 200%;
-height: 200%;
-left: -50%;
-top: -50%;
-background: radial-gradient(circle at center, rgba(251,191,36,0.45) 0%, rgba(251,191,36,0.15) 25%, transparent 55%);
-pointer-events: none;
-animation: spotlight 1.6s ease-in-out infinite;
-z-index: 0;
-}
-@keyframes turnArrowBob {
-0%, 100% { transform: translate(-50%, 0); }
-50%      { transform: translate(-50%, 4px); }
-}
-.turn-arrow { animation: turnArrowBob 0.9s ease-in-out infinite; }
+  /* ───── Active turn indicator ───── */
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow:
+        0 0 0 3px #fbbf24,
+        0 0 14px 4px rgba(251,191,36,0.85),
+        0 0 32px 6px rgba(251,191,36,0.45);
+    }
+    50% {
+      box-shadow:
+        0 0 0 3px #fde047,
+        0 0 22px 8px rgba(253,224,71,0.95),
+        0 0 50px 14px rgba(253,224,71,0.55);
+    }
+  }
+  .active-turn { animation: pulseGlow 1.4s ease-in-out infinite; }
+  @keyframes spotlight {
+    0%, 100% { opacity: 0.55; }
+    50%      { opacity: 0.95; }
+  }
+  .spotlight {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    left: -50%;
+    top: -50%;
+    background: radial-gradient(circle at center, rgba(251,191,36,0.45) 0%, rgba(251,191,36,0.15) 25%, transparent 55%);
+    pointer-events: none;
+    animation: spotlight 1.6s ease-in-out infinite;
+    z-index: 0;
+  }
+  @keyframes turnArrowBob {
+    0%, 100% { transform: translate(-50%, 0); }
+    50%      { transform: translate(-50%, 4px); }
+  }
+  .turn-arrow { animation: turnArrowBob 0.9s ease-in-out infinite; }
 
-/* ───── Animations ───── */
-@keyframes pop { 0%{transform:scale(1);} 40%{transform:scale(1.12);} 100%{transform:scale(1);} }
-.anim-pop { animation: pop 0.4s ease-out; }
-@keyframes slideUp { from{transform:translateY(40px); opacity:0;} to{transform:translateY(0); opacity:1;} }
-.anim-slide { animation: slideUp 0.28s ease-out; }
-@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
-.anim-fade { animation: fadeIn 0.18s ease-out; }
-@keyframes phaseFlash {
-0%   { opacity: 0; transform: scale(0.85); }
-20%  { opacity: 1; transform: scale(1.05); }
-80%  { opacity: 1; transform: scale(1); }
-100% { opacity: 0; transform: scale(1); }
-}
-.anim-phase { animation: phaseFlash 1.6s ease-out forwards; }
+  /* ───── Animations ───── */
+  @keyframes pop { 0%{transform:scale(1);} 40%{transform:scale(1.12);} 100%{transform:scale(1);} }
+  .anim-pop { animation: pop 0.4s ease-out; }
+  @keyframes slideUp { from{transform:translateY(40px); opacity:0;} to{transform:translateY(0); opacity:1;} }
+  .anim-slide { animation: slideUp 0.28s ease-out; }
+  @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+  .anim-fade { animation: fadeIn 0.18s ease-out; }
+  @keyframes phaseFlash {
+    0%   { opacity: 0; transform: scale(0.85); }
+    20%  { opacity: 1; transform: scale(1.05); }
+    80%  { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1); }
+  }
+  .anim-phase { animation: phaseFlash 1.6s ease-out forwards; }
 
-/* ───── Confetti ───── */
-@keyframes confettiFall {
-0%   { transform: translate(var(–cx), -120vh) rotate(0deg); opacity: 0; }
-8%   { opacity: 1; }
-100% { transform: translate(calc(var(–cx) + var(–cdx)), 110vh) rotate(var(–crot)); opacity: 1; }
-}
-.confetti-piece {
-position: absolute;
-top: 0;
-left: 50%;
-width: 10px;
-height: 14px;
-border-radius: 2px;
-will-change: transform, opacity;
-animation: confettiFall var(–cdur) cubic-bezier(.2,.6,.4,1) forwards;
-}
+  /* ───── Confetti ───── */
+  @keyframes confettiFall {
+    0%   { transform: translate(var(--cx), -120vh) rotate(0deg); opacity: 0; }
+    8%   { opacity: 1; }
+    100% { transform: translate(calc(var(--cx) + var(--cdx)), 110vh) rotate(var(--crot)); opacity: 1; }
+  }
+  .confetti-piece {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 10px;
+    height: 14px;
+    border-radius: 2px;
+    will-change: transform, opacity;
+    animation: confettiFall var(--cdur) cubic-bezier(.2,.6,.4,1) forwards;
+  }
 
-/* ───── Win glow text ───── */
-@keyframes winGlow {
-0%, 100% { text-shadow: 0 0 18px rgba(252,211,77,0.6), 0 0 36px rgba(252,211,77,0.4); }
-50%      { text-shadow: 0 0 28px rgba(252,211,77,0.95), 0 0 60px rgba(252,211,77,0.65); }
-}
-.win-glow { animation: winGlow 1.6s ease-in-out infinite; }
+  /* ───── Win glow text ───── */
+  @keyframes winGlow {
+    0%, 100% { text-shadow: 0 0 18px rgba(252,211,77,0.6), 0 0 36px rgba(252,211,77,0.4); }
+    50%      { text-shadow: 0 0 28px rgba(252,211,77,0.95), 0 0 60px rgba(252,211,77,0.65); }
+  }
+  .win-glow { animation: winGlow 1.6s ease-in-out infinite; }
 
-/* ───── Chip popping in ───── */
-@keyframes chipPop {
-0%   { transform: translate(0,0) scale(0); opacity: 0; }
-50%  { transform: translate(var(–px), var(–py)) scale(1.4); opacity: 1; }
-100% { transform: translate(var(–px), var(–py)) scale(1); opacity: 1; }
-}
-.chip-pop {
-position: absolute;
-width: 22px; height: 22px;
-border-radius: 9999px;
-background: radial-gradient(circle at 30% 25%, #fde68a 0%, #f59e0b 65%, #92400e 100%);
-border: 2px dashed rgba(255,255,255,0.7);
-animation: chipPop var(–dur) cubic-bezier(.34,1.56,.64,1) both;
-pointer-events: none;
-}
+  /* ───── Chip popping in ───── */
+  @keyframes chipPop {
+    0%   { transform: translate(0,0) scale(0); opacity: 0; }
+    50%  { transform: translate(var(--px), var(--py)) scale(1.4); opacity: 1; }
+    100% { transform: translate(var(--px), var(--py)) scale(1); opacity: 1; }
+  }
+  .chip-pop {
+    position: absolute;
+    width: 22px; height: 22px;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 30% 25%, #fde68a 0%, #f59e0b 65%, #92400e 100%);
+    border: 2px dashed rgba(255,255,255,0.7);
+    animation: chipPop var(--dur) cubic-bezier(.34,1.56,.64,1) both;
+    pointer-events: none;
+  }
 
-/* ───── Spinning wheel ───── */
-.wheel-tick {
-position: absolute;
-top: -2px; left: 50%; transform: translateX(-50%);
-width: 0; height: 0;
-border-left: 14px solid transparent;
-border-right: 14px solid transparent;
-border-top: 22px solid #facc15;
-filter: drop-shadow(0 3px 4px rgba(0,0,0,0.6));
-z-index: 5;
-}
+  /* ───── Spinning wheel ───── */
+  .wheel-tick {
+    position: absolute;
+    top: -2px; left: 50%; transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-top: 22px solid #facc15;
+    filter: drop-shadow(0 3px 4px rgba(0,0,0,0.6));
+    z-index: 5;
+  }
 
-/* ───── Range slider ───── */
-input[type=range] { -webkit-appearance: none; background: transparent; width: 100%; }
-input[type=range]::-webkit-slider-runnable-track {
-height: 10px;
-background: linear-gradient(90deg, #f59e0b var(–fill,50%), #3f3f46 var(–fill,50%));
-border-radius: 9999px;
-box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
-}
-input[type=range]::-webkit-slider-thumb {
--webkit-appearance: none;
-height: 36px; width: 36px;
-border-radius: 50%;
-background: radial-gradient(circle at 30% 25%, #fde68a 0%, #f59e0b 65%, #92400e 100%);
-border: 3px dashed white;
-margin-top: -13px;
-box-shadow: 0 3px 8px rgba(0,0,0,0.6);
-cursor: pointer;
-}
-input[type=range]::-moz-range-track {
-height: 10px;
-background: linear-gradient(90deg, #f59e0b var(–fill,50%), #3f3f46 var(–fill,50%));
-border-radius: 9999px;
-}
-input[type=range]::-moz-range-thumb {
-height: 36px; width: 36px;
-border-radius: 50%;
-background: radial-gradient(circle at 30% 25%, #fde68a 0%, #f59e0b 65%, #92400e 100%);
-border: 3px dashed white;
-box-shadow: 0 3px 8px rgba(0,0,0,0.6);
-cursor: pointer;
-}
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-input[type=number] { -moz-appearance: textfield; }
-::-webkit-scrollbar { width: 0; height: 0; }
-.no-scrollbar { scrollbar-width: none; }
+  /* ───── Range slider ───── */
+  input[type=range] { -webkit-appearance: none; background: transparent; width: 100%; }
+  input[type=range]::-webkit-slider-runnable-track {
+    height: 10px;
+    background: linear-gradient(90deg, #f59e0b var(--fill,50%), #3f3f46 var(--fill,50%));
+    border-radius: 9999px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 36px; width: 36px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 25%, #fde68a 0%, #f59e0b 65%, #92400e 100%);
+    border: 3px dashed white;
+    margin-top: -13px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.6);
+    cursor: pointer;
+  }
+  input[type=range]::-moz-range-track {
+    height: 10px;
+    background: linear-gradient(90deg, #f59e0b var(--fill,50%), #3f3f46 var(--fill,50%));
+    border-radius: 9999px;
+  }
+  input[type=range]::-moz-range-thumb {
+    height: 36px; width: 36px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 25%, #fde68a 0%, #f59e0b 65%, #92400e 100%);
+    border: 3px dashed white;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.6);
+    cursor: pointer;
+  }
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  input[type=number] { -moz-appearance: textfield; }
+  ::-webkit-scrollbar { width: 0; height: 0; }
+  .no-scrollbar { scrollbar-width: none; }
 
-/* ───── Premium gradient buttons ───── */
-.btn-primary {
-background: linear-gradient(180deg, #22c55e 0%, #15803d 100%);
-box-shadow: 0 6px 20px rgba(34,197,94,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
-}
-.btn-primary:active { transform: translateY(1px); }
-.btn-blue {
-background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
-box-shadow: 0 4px 14px rgba(59,130,246,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
-}
-.btn-blue:active { transform: translateY(1px); }
-.btn-red {
-background: linear-gradient(180deg, #ef4444 0%, #b91c1c 100%);
-box-shadow: 0 4px 14px rgba(239,68,68,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
-}
-.btn-red:active { transform: translateY(1px); }
-.btn-dark {
-background: linear-gradient(180deg, #3f3f46 0%, #18181b 100%);
-border: 1px solid rgba(255,255,255,0.06);
-box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
-}
-.btn-dark:active { transform: translateY(1px); }
+  /* ───── Premium gradient buttons ───── */
+  .btn-primary {
+    background: linear-gradient(180deg, #22c55e 0%, #15803d 100%);
+    box-shadow: 0 6px 20px rgba(34,197,94,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
+  }
+  .btn-primary:active { transform: translateY(1px); }
+  .btn-blue {
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+    box-shadow: 0 4px 14px rgba(59,130,246,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
+  }
+  .btn-blue:active { transform: translateY(1px); }
+  .btn-red {
+    background: linear-gradient(180deg, #ef4444 0%, #b91c1c 100%);
+    box-shadow: 0 4px 14px rgba(239,68,68,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
+  }
+  .btn-red:active { transform: translateY(1px); }
+  .btn-dark {
+    background: linear-gradient(180deg, #3f3f46 0%, #18181b 100%);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .btn-dark:active { transform: translateY(1px); }
 
-/* ───── Phase banner ───── */
-.phase-banner {
-background: linear-gradient(180deg, rgba(252,211,77,0.95) 0%, rgba(245,158,11,0.95) 100%);
-color: #18181b;
-box-shadow: 0 8px 32px rgba(252,211,77,0.4), inset 0 1px 0 rgba(255,255,255,0.4);
-}
+  /* ───── Phase banner ───── */
+  .phase-banner {
+    background: linear-gradient(180deg, rgba(252,211,77,0.95) 0%, rgba(245,158,11,0.95) 100%);
+    color: #18181b;
+    box-shadow: 0 8px 32px rgba(252,211,77,0.4), inset 0 1px 0 rgba(255,255,255,0.4);
+  }
 </style>
-
 </head>
 <body class="text-white">
 <div id="root"></div>
@@ -1943,6 +1941,5 @@ function Modal({ children, onClose, fullscreen }) {
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
-
 </body>
 </html>
